@@ -1,0 +1,57 @@
+<form novalidate #register2Form="ngForm" (ngSubmit)="register2(register2Form.value)">
+  <legend>General</legend>
+  <div class="form-group">
+    <label for="fullname">Fullname</label>
+    <input [(ngModel)]="member.fullname" #fullname="ngModel" type="text" class="form-control" id="fullname" name="fullname" aria-describedby="fullnameHelp"
+      placeholder="Enter fullname" required>
+    <div [hidden]="fullname.valid || fullname.pristine" class="form-control-feedback alert alert-danger">please enter fullname</div>
+  </div>
+
+  <div class="form-group">
+    <input #email="ngModel" [(ngModel)]="member.email" type="email" name="email" placeholder="email" class="form-control" required
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+    <div [hidden]="email.valid || email.pristine" class="form-control-feedback alert alert-danger">
+      <div *ngIf="email.errors && email.errors.required">please enter email</div>
+      <div *ngIf="email.errors && email.errors.pattern">wrong email format</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input [(ngModel)]="member.password" #password="ngModel" type="password" class="form-control" id="password" name="password"
+      aria-describedby="passwordHelp" placeholder="Enter password" required>
+    <div [hidden]="password.valid || password.pristine" class="form-control-feedback alert alert-danger">please enter password</div>
+  </div>
+
+  <fieldset class="form-group">
+    <legend>Gender</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input [(ngModel)]="member.gender" type="radio" class="form-check-input" name="gender" id="gender1" value="male" checked>
+        Male
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input [(ngModel)]="member.gender" type="radio" class="form-check-input" name="gender" id="gender2" value="female">
+        Female
+      </label>
+    </div>
+  </fieldset>
+
+  <div class="form-group">
+    <label for="education">Education from</label>
+    <select [(ngModel)]="member.education" #education="ngModel" class="form-control" id="education" name="education" required>
+      <option selected value="">-select university-</option>
+      <option *ngFor="let education of educations" [value]="education">{{ education }}</option>
+    </select>
+    <div [hidden]="education.valid || education.pristine" class="form-control-feedback alert alert-danger">please select education from</div>
+  </div>
+
+  <div class="form-check">
+    <label class="form-check-label">
+      <input [(ngModel)]="member.subscribe" type="checkbox" class="form-check-input" id="subscribe" name="subscribe" value="true">
+      subscribe email
+    </label>
+  </div>
+  <button [disabled]="!register2Form.form.valid" type="submit" class="btn btn-primary">Submit</button>
+</form>

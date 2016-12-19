@@ -1,3 +1,19 @@
-<p>
-  product works!
-</p>
+<input [(ngModel)]="keywordFilter" type="text" placeholder="ค้นหาคอร์สที่นี่" class="form-control">
+<hr>
+<h1>คำค้นหา: {{keywordFilter}}</h1>
+<div *ngFor="let item of product | productFilter:keywordFilter" class="row">
+	<div class="col-xs-4">
+		<div class="card card-block">
+			image
+		</div>
+	</div>
+	<div class="col-xs-8">
+		<div class="card-title">
+			{{ item.c_title | uppercase }}
+		</div>
+		<div class="card-text">
+			{{item.c_detail}}
+		</div>
+		<button (click)="onShowDetail(item)">เข้าเรียน</button>
+	</div>
+</div>

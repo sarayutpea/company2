@@ -1,8 +1,21 @@
 <div class="col-md-9">
-  <article *ngFor="let item of news">
-    <h2>{{ item.title }}</h2>
-    <p>{{ item.description }}</p>
-  </article>
+  <label for="search">ค้นหาข่าว</label>
+  <input class="form-control" type="text" #search (keyup)="onSearch(search.value)">
+  <img *ngIf="isLoading" src="./assets/image/preload.gif" class="center-block" alt="Loading">
+  <div class="card" *ngFor="let item of news">
+    <div class="card-block">
+      <h4 class="card-title">{{ item.title | mypipe }}</h4>
+      <h6 class="card-subtitle text-muted">{{ item.publishedAt | date:'d/MM/yyyy' }}</h6>
+    </div>
+    <img [src]="[item.urlToImage]" class="img-fluid" alt="Card image">
+    <div class="card-block">
+      <p class="card-text">{{ item.description }}</p>
+      <a [href]="[item.url]" target="_blank" class="card-link">read more</a>
+      <div class="float-xs-left"></div>
+      <div class="float-xs-right">{{item.author}}</div>
+    </div>
+  </div>
+  <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
 </div>
 <div class="col-md-3">
   <div class="row">

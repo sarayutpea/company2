@@ -5,14 +5,23 @@
     </h5>
   </div>
   <div class="card-block">
-    <form>
+    <form *ngIf="!isLogin" #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
       <div class="form-group">
-        <input type="text" class="form-control" id="uid" name="uid" placeholder="Username">
+        <!--ngModel has relate with tag name-->
+        <input ngModel type="text" class="form-control" id="username" name="username" placeholder="Username" required>
       </div>
       <div class="form-group">
-        <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Password">
+        <input ngModel type="password" class="form-control" id="password" name="password" placeholder="Password" required>
       </div>
-      <button type="submit" class="btn btn-primary">Log In</button>
+      <button  [disabled]="!loginForm.form.valid" type="submit" class="btn btn-primary">Log In</button>
+      <button class="btn btn-primary" [routerLink]="['auth0']" >register</button>
     </form>
+    <div class="alert alert-danger" *ngIf="isError">{{ errorMessage }}</div>
+    <div class="text-center" *ngIf="isLogin">
+      <img [src]="profile?.picture" alt=""> <br>
+      ยินดีต้อนรับ {{ profile?.nickname }} <br>
+      email {{ profile?.email }} <br>
+      <button class="btn btn-warning" (click)="logout()">log out</button>
+    </div>
   </div>
 </div>

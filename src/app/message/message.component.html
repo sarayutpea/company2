@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-md-8">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>ผู้ส่ง</th>
+          <th>ข้อความ</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items | async" (click)="selected(item)">
+          <td>{{ item.value.user}}</td>
+          <td>{{ item.value.description }}</td>
+          <td>{{ item.$key }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="card">
+      <div class="card-header">
+        Private message
+      </div>
+      <div class="card-block">
+        lolemipsum
+
+        <form novalidate #message="ngForm" (ngSubmit)="save(message.value)">
+          <div class="form-group">
+            <input [(ngModel)]="user" type="text" class="form-control" name="user" placeholder="name" required>
+          </div>
+          <div class="form-group">
+            <textarea [(ngModel)]="description" name="description" id="description" cols="30" rows="10" class="form-control" placeholder="description">
+              </textarea>
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-primary" type="submit">send</button>
+            <button class="btn btn-warning" type="button" (click)="update(message.value)">update</button>
+            <button class="btn btn-danger" type="button" (click)="delete()">delete</button>
+            <button class="btn btn-danger" type="button" (click)="deleteall()">delete all</button>
+          </div>
+        
+          
+
+          
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>

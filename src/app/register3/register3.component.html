@@ -1,0 +1,19 @@
+<h1>สมัครสมาชิคแบบ Reactive form</h1>
+<div class="card-block">
+  <form novalidate [formGroup]="myForm" (ngSubmit)="register()">
+    <div class="form-group">
+      <input type="email" formControlName="email" name="email" id="email" placeholder="email" class="form-control">
+      <div *ngIf="email.hasError('required') && email.dirty" class="form-control-feedback alert alert-danger">please enter email</div>
+      <div *ngIf="email.hasError('invalidEmail') && email.dirty" class="form-control-feedback alert alert-danger">wrong email format</div>
+      <div *ngIf="email.hasError('notAllow') && email.dirty" class="form-control-feedback alert alert-danger">can't use this email</div>
+    </div>
+    <div class="form-group">
+      <input type="password" formControlName="password" name="password" id="password" placeholder="password" class="form-control">
+      <div *ngIf="password.hasError('required') && password.dirty" class="form-control-feedback alert alert-danger">please enter password</div>
+      <div *ngIf="password.hasError('minlength') && password.dirty" class="form-control-feedback alert alert-danger">enter more than 3 charactor</div>
+    </div>
+    <div class="form-group">
+      <button type="submit" [disabled]="!myForm.valid" class="btn">Register</button>
+    </div>
+  </form>
+</div>

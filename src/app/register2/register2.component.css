@@ -1,0 +1,3 @@
+.ng-valid[required], .ng-valid.required{
+    border-left: solid 5px green;
+}

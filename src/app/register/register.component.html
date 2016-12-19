@@ -1,0 +1,23 @@
+<h1>Register 1</h1>
+<div class="card-block">
+  <form #registerForm="ngForm" (ngSubmit)="register(registerForm.value)">
+    <div class="form-group">
+      <input #username="ngModel" ngModel type="text" name="username" placeholder="username" class="form-control" required>
+      <div [hidden]="username.valid || username.pristine" class="form-control-feedback alert alert-danger">please enter username</div>
+    </div>
+    <div class="form-group">
+      <input #password="ngModel" ngModel type="password" name="password" placeholder="password" class="form-control" required minlength="3">
+      <div [hidden]="password.valid || password.pristine" class="form-control-feedback alert alert-danger">please enter password</div>
+    </div>
+    <div class="form-group">
+      <input #email="ngModel" ngModel type="email" name="email" placeholder="email" class="form-control" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+      <div [hidden]="email.valid || email.pristine" class="form-control-feedback alert alert-danger">
+        <div *ngIf="email.errors && email.errors.required">please enter email</div>
+        <div *ngIf="email.errors && email.errors.pattern">wrong email format</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button [disabled]="!registerForm.form.valid" type="submit" class="btn">Register</button>
+    </div>
+  </form>
+</div>

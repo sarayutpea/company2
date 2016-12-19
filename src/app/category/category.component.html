@@ -1,12 +1,8 @@
 <div class="card">
   <div class="card-header p-b-0">
-    <h5 class="card-title"><i class="fa fa-random" aria-hidden="true"></i>Completely Synergize</h5>
+    <h5 class="card-title"><i class="fa fa-random" aria-hidden="true"></i>สินค้า</h5>
   </div>
-  <div class="list-group list-group-flush">
-    <a href="#" class="list-group-item list-group-item-action">Resource Taxing</a>
-    <a href="#" class="list-group-item list-group-item-action">Premier Niche Markets</a>
-    <a href="#" class="list-group-item list-group-item-action">Dynamically Innovate</a>
-    <a href="#" class="list-group-item list-group-item-action">Objectively Innovate</a>
-    <a href="#" class="list-group-item list-group-item-action">Proactively Envisioned</a>
+  <div class="list-group list-group-flush" *ngFor="let item of product">
+    <a href="#" class="list-group-item list-group-item-action" (click)="onShowDetail($event,item)">{{ item.c_title}}</a>
   </div>
 </div>
