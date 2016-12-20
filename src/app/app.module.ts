@@ -10,6 +10,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { ChartModule } from 'angular2-highcharts';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AppComponent } from './app.component';
 import { CategoryComponent } from './category/category.component';
 import { BestsellerComponent } from './bestseller/bestseller.component';
@@ -41,6 +43,8 @@ import { Report1Component } from './report1/report1.component';
 import { Report2Component } from './report2/report2.component';
 import { Report3Component } from './report3/report3.component';
 import { Report4Component } from './report4/report4.component';
+
+import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 
 // Must export the config
 export const firebaseConfig = {
@@ -86,6 +90,8 @@ export const firebaseConfig = {
     ReactiveFormsModule,
     HttpModule,
     ChartsModule,
+    ChartModule,
+    NgbModule,
     AngularFireModule.initializeApp(firebaseConfig),  // angular 2 firebase
     RouterModule.forRoot([
       { path: '', component: NewsComponent },
@@ -107,7 +113,7 @@ export const firebaseConfig = {
       { path: '**', redirectTo: '' }
     ], { useHash: true })
   ],
-  providers: [Title, NewsService, ProductService, AuthRegisterService, LoginService, AuthguardService], //ขั้นตอนของการเรียกใช้ service กำหนดใน providers
+  providers: [Title, NewsService, ProductService, AuthRegisterService, LoginService, AuthguardService, NgbCarouselConfig], //ขั้นตอนของการเรียกใช้ service กำหนดใน providers
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,6 +4,8 @@ import { Http, Response } from '@angular/http';
 
 import { NewsService } from '../news.service';
 import { News } from '../news';
+
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
@@ -14,9 +16,14 @@ export class NewsComponent implements OnInit {
   errorMessage: string;
   isLoading: boolean = false;
 
-  constructor(private title: Title, private newsService: NewsService) { }
+  constructor(private title: Title, private newsService: NewsService, private config: NgbCarouselConfig) { }
 
   ngOnInit() {
+    // ตั้งค่าตัวสไล้ ng bootstrap
+    this.config.interval = 1000;
+    this.config.wrap = true;
+    this.config.keyboard = true;
+
     this.title.setTitle('ข่าวทั้งหมด');
     this.getNews();
   }
@@ -39,9 +46,9 @@ export class NewsComponent implements OnInit {
     // console.log(search);
     if (search != '') {
       this.news = this.news
-      .filter(item => item.title.toLowerCase()
-      .includes(search.toLowerCase()));
-    }else {
+        .filter(item => item.title.toLowerCase()
+          .includes(search.toLowerCase()));
+    } else {
       this.getNews();
       // this.news = this.newsService.getNews();
     }
